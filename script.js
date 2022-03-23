@@ -15,5 +15,9 @@ function inserirItem() {
 }
 
 function mudarCorDeFundo(event) {
+  let itemClicado = document.querySelectorAll('.clicado');
+  if (itemClicado.length === 1) {
+    document.querySelector('.clicado').classList.remove('clicado');
+  }
   event.target.classList = 'clicado';
 }
