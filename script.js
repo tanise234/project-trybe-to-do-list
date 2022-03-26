@@ -1,3 +1,4 @@
+// requisitos 5 e 6
 function inserirItem() {
   const texto = document.getElementById('texto-tarefa');
   const item = document.createElement('li');
@@ -8,16 +9,18 @@ function inserirItem() {
   texto.value = '';
 }
 
+// requisitos 7 e 8
 function mudarCorDeFundo(event) {
-  let itemClicado = document.querySelectorAll('.clicado');
+  const itemClicado = document.querySelectorAll('.clicado');
   if (itemClicado.length === 1) {
     document.querySelector('.clicado').classList.remove('clicado');
   }
   event.target.classList = 'clicado';
 }
 
+// requisito 9
 function riscarItem(event) {
-  let itemRiscado = event.target.classList;
+  const itemRiscado = event.target.classList;
   if (itemRiscado.contains('completed')) {
     itemRiscado.remove('completed');
   } else {
@@ -27,11 +30,24 @@ function riscarItem(event) {
 
 document.getElementById('criar-tarefa').addEventListener('click', inserirItem);
 
-document.getElementById('apaga-tudo').addEventListener('click', apagaTudo);
-
+// requisito 10
 function apagaTudo() {
-  let itensDaLista = document.querySelectorAll('#lista-tarefas li');
-  for (i = 0; i < itensDaLista.length; i += 1) {
+  const itensDaLista = document.querySelectorAll('#lista-tarefas li');
+  for (let i = 0; i < itensDaLista.length; i += 1) {
     itensDaLista[i].parentNode.removeChild(itensDaLista[i]);
   }
 }
+
+document.getElementById('apaga-tudo').addEventListener('click', apagaTudo);
+
+// requisito 11
+function removeFinalizados() {
+  const finalizados = document.querySelectorAll('.completed');
+  for (let i = 0; i < finalizados.length; i += 1) {
+    finalizados[i].parentNode.removeChild(finalizados[i]);
+  }
+}
+
+document
+  .getElementById('remover-finalizados')
+  .addEventListener('click', removeFinalizados);
