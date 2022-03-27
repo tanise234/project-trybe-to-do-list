@@ -1,21 +1,10 @@
-// requisitos 5 e 6
-function inserirItem() {
-  const texto = document.getElementById('texto-tarefa');
-  const item = document.createElement('li');
-  item.innerText = texto.value;
-  item.addEventListener('dblclick', riscarItem);
-  item.addEventListener('click', mudarCorDeFundo);
-  document.getElementById('lista-tarefas').appendChild(item);
-  texto.value = '';
-}
-
 // requisitos 7 e 8
 function mudarCorDeFundo(event) {
   const itemClicado = document.querySelectorAll('.clicado');
   if (itemClicado.length === 1) {
     document.querySelector('.clicado').classList.remove('clicado');
   }
-  event.target.classList = 'clicado';
+  event.target.classList.add('clicado');
 }
 
 // requisito 9
@@ -26,6 +15,17 @@ function riscarItem(event) {
   } else {
     itemRiscado.add('completed');
   }
+}
+
+// requisitos 5 e 6
+function inserirItem() {
+  const texto = document.getElementById('texto-tarefa');
+  const item = document.createElement('li');
+  item.innerText = texto.value;
+  item.addEventListener('dblclick', riscarItem);
+  item.addEventListener('click', mudarCorDeFundo);
+  document.getElementById('lista-tarefas').appendChild(item);
+  texto.value = '';
 }
 
 document.getElementById('criar-tarefa').addEventListener('click', inserirItem);
