@@ -4,7 +4,7 @@ function mudarCorDeFundo(event) {
   if (itemClicado.length === 1) {
     document.querySelector('.clicado').classList.remove('clicado');
   }
-  let novoItemClicado = event.target.classList;
+  const novoItemClicado = event.target.classList;
   novoItemClicado.add('clicado');
 }
 
@@ -55,8 +55,8 @@ document
 
 // requisito 13
 function sobe() {
-  let selecionado = document.querySelector('.clicado');
-  let primeiroDaLista = document.querySelector('#lista-tarefas').firstChild;
+  const selecionado = document.querySelector('.clicado');
+  const primeiroDaLista = document.querySelector('#lista-tarefas').firstChild;
   if (primeiroDaLista !== selecionado && selecionado !== null) {
     const aux1 = selecionado.previousElementSibling.innerHTML;
     const aux2 = selecionado.innerHTML;
@@ -93,3 +93,24 @@ function removeSelecionado() {
 document
   .getElementById('remover-selecionado')
   .addEventListener('click', removeSelecionado);
+
+// requisito 12
+function salvaLista() {
+  localStorage.clear();
+  const lista = document.getElementById('lista-tarefas');
+  localStorage.setItem('index', JSON.stringify(lista.innerHTML));
+}
+
+function recuperaLista() {
+  if (localStorage.length > 0) {
+    const lista = document.getElementById('lista-tarefas');
+    lista.innerHTML = JSON.parse(localStorage.getItem('index'));
+    for (let i = 0; i < lista.children.length; i += 1) {
+      lista.children[i].addEventListener('dblclick', riscarItem);
+      lista.children[i].addEventListener('click', mudarCorDeFundo);
+    }
+  }
+}
+
+window.onload = recuperaLista;
+document.getElementById('salvar-tarefas').addEventListener('click', salvaLista);
