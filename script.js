@@ -4,7 +4,8 @@ function mudarCorDeFundo(event) {
   if (itemClicado.length === 1) {
     document.querySelector('.clicado').classList.remove('clicado');
   }
-  event.target.classList.add('clicado');
+  let novoItemClicado = event.target.classList;
+  novoItemClicado.add('clicado');
 }
 
 // requisito 9
@@ -51,3 +52,36 @@ function removeFinalizados() {
 document
   .getElementById('remover-finalizados')
   .addEventListener('click', removeFinalizados);
+
+// requisito 13
+function sobe() {
+  const selecionado = document.querySelector('.clicado');
+  const primeiroDaLista = document.querySelector('#lista-tarefas').firstChild;
+  if (primeiroDaLista !== selecionado && selecionado !== null) {
+    selecionado.classList.remove('clicado');
+    selecionado.previousElementSibling.classList.add('clicado');
+  }
+}
+
+function desce() {
+  const selecionado = document.querySelector('.clicado');
+  const ultimoDaLista = document.querySelector('#lista-tarefas').lastChild;
+  if (ultimoDaLista !== selecionado && selecionado !== null) {
+    selecionado.classList.remove('clicado');
+    selecionado.nextElementSibling.classList.add('clicado');
+  }
+}
+
+document.getElementById('mover-cima').addEventListener('click', sobe);
+
+document.getElementById('mover-baixo').addEventListener('click', desce);
+
+// requisito 14
+function removeSelecionado() {
+  const selecionado = document.querySelector('.clicado');
+  selecionado.parentNode.removeChild(selecionado);
+}
+
+document
+  .getElementById('remover-selecionado')
+  .addEventListener('click', removeSelecionado);
