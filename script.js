@@ -55,9 +55,13 @@ document
 
 // requisito 13
 function sobe() {
-  const selecionado = document.querySelector('.clicado');
-  const primeiroDaLista = document.querySelector('#lista-tarefas').firstChild;
+  let selecionado = document.querySelector('.clicado');
+  let primeiroDaLista = document.querySelector('#lista-tarefas').firstChild;
   if (primeiroDaLista !== selecionado && selecionado !== null) {
+    const aux1 = selecionado.previousElementSibling.innerHTML;
+    const aux2 = selecionado.innerHTML;
+    selecionado.innerHTML = aux1;
+    selecionado.previousElementSibling.innerHTML = aux2;
     selecionado.classList.remove('clicado');
     selecionado.previousElementSibling.classList.add('clicado');
   }
@@ -67,6 +71,10 @@ function desce() {
   const selecionado = document.querySelector('.clicado');
   const ultimoDaLista = document.querySelector('#lista-tarefas').lastChild;
   if (ultimoDaLista !== selecionado && selecionado !== null) {
+    const aux1 = selecionado.nextElementSibling.innerHTML;
+    const aux2 = selecionado.innerHTML;
+    selecionado.innerHTML = aux1;
+    selecionado.nextElementSibling.innerHTML = aux2;
     selecionado.classList.remove('clicado');
     selecionado.nextElementSibling.classList.add('clicado');
   }
